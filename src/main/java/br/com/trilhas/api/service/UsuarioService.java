@@ -58,10 +58,10 @@ public class UsuarioService {
     
     public Usuario editar(Long id, UsuarioDTO dto) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario nao encontrado"));
-        usuario.setNome(dto.getNome());
-        usuario.setEmail(dto.getEmail());
-        usuario.setSenha(dto.getSenha());
-        usuario.setPapel(dto.getPapel());
+        usuario.setNome(dto.getNome() == null ? usuario.getNome() : dto.getNome());
+        usuario.setEmail(dto.getEmail() == null ? usuario.getEmail() : dto.getEmail());
+        usuario.setSenha(dto.getSenha() == null ? usuario.getSenha() : dto.getSenha());
+        usuario.setPapel(dto.getPapel() == null ? usuario.getPapel() : dto.getPapel());
         return usuarioRepository.save(usuario);
     }
     
